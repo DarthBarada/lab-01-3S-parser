@@ -1,0 +1,38 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../../include/Addons.hpp
+filesystem
+-
+set
+-
+iostream
+-
+
+../../include/Exceptions.hpp
+stdexcept
+-
+
+../../include/JsonParser.hpp
+set
+-
+map
+-
+vector
+-
+any
+-
+
+/home/darthbarada/Programming/BMSTU/lab-01-3S-parser/sources/JsonParser.cpp
+JsonParser.hpp
+/home/darthbarada/Programming/BMSTU/lab-01-3S-parser/sources/JsonParser.hpp
+Exceptions.hpp
+/home/darthbarada/Programming/BMSTU/lab-01-3S-parser/sources/Exceptions.hpp
+Addons.hpp
+/home/darthbarada/Programming/BMSTU/lab-01-3S-parser/sources/Addons.hpp
+

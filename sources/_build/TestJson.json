@@ -1,0 +1,18 @@
+{
+  "key": [
+    1,
+    2,
+    3
+  ],
+  "map": {
+    "another": {
+      "keyhere": 123,
+      "list": [
+        "string",
+        false,
+        null,
+        44
+      ]
+    }
+  }
+}

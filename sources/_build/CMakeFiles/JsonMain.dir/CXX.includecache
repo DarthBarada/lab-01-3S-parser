@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../../include/Addons.hpp
+filesystem
+-
+set
+-
+iostream
+-
+
+/home/darthbarada/Programming/BMSTU/lab-01-3S-parser/sources/main.cpp
+iostream
+-
+Addons.hpp
+/home/darthbarada/Programming/BMSTU/lab-01-3S-parser/sources/Addons.hpp
+

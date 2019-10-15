@@ -6,8 +6,8 @@
 
 #include <string>
 
+#include <set>
 #include <map>
-#include <set> 
 #include <vector>
 
 #include <any>
@@ -18,12 +18,12 @@ std::vector <std::string> array_parser(std::string& s);
 std::vector <std::string> object_parser(std::string& s);
 
 
-class Json 
+class Json
 	{
 	public:
 		// Контейнеры для хранения объектов
 		std::map<std::string, std::any> Objects; // Для хранения объектов
-		std::vector<std::any> Arrays;			 // Для хранения массивов
+		std::vector<std::any> Arrays;			 			 // Для хранения массивов
 
 		bool contains_object = false;
 		bool contains_array = false;
@@ -34,7 +34,7 @@ class Json
 		Json(Json& s);
 		// Пустой конструктор
 		Json() = default;
-		
+
 		~Json() = default;
 
 		// Метод возвращает true, если данный экземпляр содержит в себе JSON-массив. Иначе false.
@@ -76,11 +76,11 @@ class Json
 		// Если экземпляр является JSON-объектом, генерируется исключение.
 		std::any& operator[](int index);
 
-		// Метод возвращает объект класса Json из строки, содержащей Json-данные.
+		/*// Метод возвращает объект класса Json из строки, содержащей Json-данные.
 		static Json parse(const std::string& s);
 
 		// Метод возвращает объекта класса Json из файла, содержащего Json-данные в текстовом формате.
-		static Json parseFile(const std::string& path_to_file);
-		
+		static Json parseFile(const std::string& path_to_file);*/
+
 		void print();
 	};

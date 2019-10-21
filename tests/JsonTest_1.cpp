@@ -2,6 +2,8 @@
 #include <fstream>
 
 #include "Json.hpp"
+#include "JsonParser.hpp"
+#include "Exceptions.hpp"
 
 TEST(Json, NullJson)
 	{
@@ -40,7 +42,7 @@ TEST(Json, ParseFile)
 TEST(Json, ParseFileException)
 	{
 		EXPECT_THROW(
-			Json::parseFile("_file_do_not_exists_"),
+			Json("_file_do_not_exists_"),
 			WrongJson
 		);
 	}

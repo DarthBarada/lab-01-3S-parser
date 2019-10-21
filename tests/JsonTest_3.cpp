@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 
 #include "Json.hpp"
+#include "Exceptions.hpp"
 
 TEST(JsonObject, EmptyObject)
 	{

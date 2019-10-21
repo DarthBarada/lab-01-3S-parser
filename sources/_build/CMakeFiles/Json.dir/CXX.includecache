@@ -13,6 +13,8 @@ set
 -
 iostream
 -
+algorithm
+-
 
 ../../include/Exceptions.hpp
 stdexcept

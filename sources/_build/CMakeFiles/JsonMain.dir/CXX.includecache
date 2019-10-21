@@ -13,6 +13,8 @@ set
 -
 iostream
 -
+algorithm
+-
 
 /home/darthbarada/Programming/BMSTU/lab-01-3S-parser/sources/main.cpp
 iostream

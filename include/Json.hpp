@@ -1,5 +1,4 @@
 #pragma once
-#include "Exceptions.hpp"
 
 #include <iostream>
 #include <fstream>
@@ -13,9 +12,6 @@
 #include <any>
 #include <typeinfo>
 #include <algorithm>
-
-std::vector <std::string> array_parser(std::string& s);
-std::vector <std::string> object_parser(std::string& s);
 
 
 class Json
@@ -47,6 +43,8 @@ class Json
 		//
 		void copy_json(const Json a)
 			{
+				contains_object = a.contains_object;
+				contains_array = a.contains_array;
 				Arrays = a.give_arrays();
 				Objects = a.give_objects();
 			}

@@ -1,19 +1,24 @@
 #pragma once
+#include "Exceptions.hpp"
+
 #include <filesystem>
 #include <set>
 #include <iostream>
+#include <fstream>
 #include <algorithm>
+#include <string>
+
 
 //            Поиск пути
 namespace fs = std::filesystem;
-const fs::path l_path(fs::current_path().parent_path()); // Указывает на папку, которая ниже
+static const fs::path l_path(fs::current_path().parent_path()); // Указывает на папку, которая ниже
 
 //            Ненужные знаки
-const std::set <char> unused_chars {' ',','};
-const std::set <char> unused_chars2{'\n','\t','\b','\v'};
+static const std::set <char> unused_chars {' ',',',':'};
+static const std::set <char> unused_chars2{'\n','\t','\b','\v'};
 
 // Функция сбрасывает пару строк
-void reset(std::pair<std::string,std::string> pair) // Tested
+void reset(std::pair<std::string,std::string>& pair) // Tested
   {
     pair.first.clear();pair.second.clear();
   }
@@ -23,11 +28,18 @@ void reset(std::pair<std::string,std::string> pair) // Tested
 bool is_file(const std::string& filename) // Tested
 	{
     /*std::cout<<"\n"<<fs::current_path()<<" "<<l_path<<"\n";*/
-    if (!fs::exists(filename))  // Если в текущей папке нет файла, то переходим в папку ниже
-      {                         // Сделано для _build
-        return fs::exists(l_path.string()+'/'+ filename);
-      }
-		return fs::exists(filename);
+	try 
+		{
+			if (!fs::exists(filename))  // Если в текущей папке нет файла, то переходим в папку ниже
+				{                         // Сделано для _build
+					return fs::exists(l_path.string() + '/' + filename);
+				}
+			return fs::exists(filename);
+		}
+	catch (std::exception)
+		{
+			return false;
+		}
 	}
 
 std::string second_step_of_cleaning(std::string& temp_string); // Tested
@@ -69,7 +81,54 @@ std::string second_step_of_cleaning(std::string& temp_string) // Tested
     return temp_string;
   }
 
-  std::string read_file(std::string path)
+void clear_quotes(std::string & string)
+	{
+		if (string.front() == '\"' || string.front() == '\'')
+			{
+				string.erase(string.begin());
+			}
+		if (string.back() == '\"' || string.back() == '\'')
+			{
+				string.pop_back();
+			}
+	}
+
+int is_json_object(const std::string& string) // 0 - не объект, 1 - объект, 2 - массив 
+	{
+		if (string.front() == '{' && string.back() == '}')
+			{
+				return 1;
+			}
+		else if (string.front() == '[' && string.back() == ']')
+			{
+				return 2;
+			}
+		else
+			{
+				throw JsonWarning("Something wrong in json string!");
+			}
+		return 0;
+	}
+
+  std::string read_file(const std::string Path) // Tested
     {
-        
+	  std::string line;
+	  std::string buffer;
+	  std::ifstream file(Path);
+	  setlocale(LC_ALL, "ru-RU");
+
+	  if (!file.is_open()) // если файл не открыт
+		  throw WrongJson("Path has errors!");
+	  else
+		  {
+			  while (!file.eof())
+				  {
+					  std::getline(file, buffer);
+					  line += buffer;
+				  }
+			  buffer.clear();
+		  }
+	  file.close();
+	  first_step_of_cleaning(line);
+	  return line;
     }

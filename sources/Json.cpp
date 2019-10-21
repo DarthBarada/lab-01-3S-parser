@@ -1,4 +1,5 @@
-#include  "Json.hpp"
+#include "Exceptions.hpp"
+#include "Json.hpp"
 #include "JsonParser.hpp"
 
 bool Json::is_empty() const
@@ -17,8 +18,7 @@ bool Json::is_object() const
 
 Json::Json(const std::string& string)
 	{
-		std::pair<std::map<std::string, std::any>,std::vector<std::any>> temp;
-		temp = std::pair<std::map<std::string, std::any>,std::vector<std::any>>(JsonParser::parser(string));
+		copy_json(*JsonParser::parser(string));
 	}
 
 Json::Json(Json& s)
@@ -54,45 +54,6 @@ std::any& Json::operator[](int index)
 			}
 		return Arrays[index];
 	}
-/*std::pair <std::vector<std::string>::iterator, std::vector<std::string>::iterator> find_for_gatherer_borders(std::vector <std::string>& s, size_t index)
-	{
-		std::string my_char = s.at(index);
-		std::string  reverse_char;
-
-		if (my_char == "{" - '\0')
-			{
-				reverse_char = "}"-'\0';
-			}
-		else if (my_char == "[" - '\0')
-			{
-				reverse_char = "]" - '\0';
-			}
-		else
-			{
-				throw JsonWarning("Что-то пошло не так!");
-			}
-
-		auto temp = s.begin() + index;
-		auto last = std::find(std::begin(s)+index, std::end(s), reverse_char);
-
-		// Смысл этого цикла: мы находим новую дальнюю границу ('}' или ']'), пока находим внутри новую нижнюю границу ('{' или '[')
-		while (std::find(temp, std::end(s), my_char) < std::find(temp + 1, std::end(s), my_char) && std::find(temp + 1, std::end(s), my_char) < std::find(last, std::end(s), reverse_char))
-			{
-				temp = std::find(temp + 1, std::end(s), my_char);			// <- Это мы находим сколько вложенных
-				last = std::find(last+1, std::end(s), reverse_char);		// <- Это мы находим следущую закрывающую скобку
-			}
-		return std::make_pair(s.begin() + index,last+1);
-	}*/
-
- /*Json Json::parse(const std::string& s)
-	{
-
-	}
-
- Json Json::parseFile(const std::string& path_to_file)
-	{
-
-	}*/
 
 void Json::AddObject(const std::string &key, const std::any &value)
 	{

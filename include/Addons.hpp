@@ -44,7 +44,7 @@ bool is_file(const std::string& filename) // Tested
 				}
 			return fs::exists(filename);
 		}
-	catch (std::exception)
+	catch (std::exception &exc)
 		{
 			return false;
 		}

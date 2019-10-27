@@ -24,7 +24,6 @@ Json* JsonParser::parse(std::string input) // Tested
 		///---------------- � ���� ����� �� ������ json ������ � ������ ----------------
 		///
 
-		second_step_of_cleaning(input);
 		if (is_json_object(input) == 1)
 			{
 				big_string_vector = object_parser(input);
@@ -33,6 +32,7 @@ Json* JsonParser::parse(std::string input) // Tested
 			{
 				big_string_vector = array_parser(input);
 			}
+    second_step_of_cleaning(input);
 
 		///
 		///------------------------------- ����� ����� -------------------------------

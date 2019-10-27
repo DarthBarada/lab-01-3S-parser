@@ -105,7 +105,7 @@ int is_json_object(const std::string& string) // 0 - не объект, 1 - об
 			}
 		else
 			{
-				throw WrongJson("Path has errors!");
+				throw WrongJson("");
 			}
 		return 0;
 	}
@@ -120,7 +120,7 @@ int is_json_object(const std::string& string) // 0 - не объект, 1 - об
       std::string line(
         std::istreambuf_iterator<char>{file},
         std::istreambuf_iterator<char>()
-    );
+       );
       first_step_of_cleaning(line);
       //log_exit(line);
   	  return line;

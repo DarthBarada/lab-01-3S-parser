@@ -29,7 +29,7 @@ void reset(std::pair<std::string,std::string>& pair) // Tested
 // Функция проверяет существование файла
 bool is_file(const std::string& filename) // Tested
 	{
-    std::ifstream file(Path);
+    std::ifstream file(filename);
     if (!file.open())
       {
         return false;

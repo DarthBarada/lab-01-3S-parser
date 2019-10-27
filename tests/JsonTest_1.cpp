@@ -32,7 +32,7 @@ TEST(Json, ExampleJson)
 
 TEST(Json, ParseFile)
 	{
-		Json json("..tests/TestJson.json");
+		Json json("../tests/TestJson.json");
 
 		EXPECT_EQ(json.is_object(), true);
 		EXPECT_EQ(json.is_array(), false);

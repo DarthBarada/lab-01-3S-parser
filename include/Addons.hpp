@@ -1,7 +1,6 @@
 #pragma once
 #include "Exceptions.hpp"
 
-#include <filesystem>
 #include <set>
 #include <iostream>
 #include <fstream>
@@ -17,10 +16,6 @@ void log_exit(const std::string& input)
     fout.close();
   }
 
-//            Поиск пути
-namespace fs = std::filesystem;
-static const fs::path l_path(fs::current_path().parent_path()); // Указывает на папку, которая ниже
-
 //            Ненужные знаки
 static const std::set <char> unused_chars {' ',',',':'};
 static const std::set <char> unused_chars2{'\n','\t','\b','\v'};
@@ -32,22 +27,15 @@ void reset(std::pair<std::string,std::string>& pair) // Tested
   }
 
 // Функция проверяет существование файла
-// Замечание: файл проверяется не в _build, а в папке, где хранится _build(source/_build/<filename>)
 bool is_file(const std::string& filename) // Tested
 	{
-    /*std::cout<<"\n"<<fs::current_path()<<" "<<l_path<<"\n";*/
-	try
-		{
-			if (!fs::exists(filename))  // Если в текущей папке нет файла, то переходим в папку ниже
-				{                         // Сделано для _build
-					return fs::exists(l_path.string() + '/' + filename);
-				}
-			return fs::exists(filename);
-		}
-	catch (std::exception &exc)
-		{
-			return false;
-		}
+    std::ifstream file(Path);
+    if (!file.open())
+      {
+        return false;
+      }
+      file.close();
+    return true;
 	}
 
 std::string second_step_of_cleaning(std::string& temp_string); // Tested

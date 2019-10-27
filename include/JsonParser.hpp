@@ -11,7 +11,6 @@ const std::set <char> edge_chars {',',']','}',':'};
 
 class JsonParser
   {
-
     public:
 	  static Json* parser(const std::string&);
 //      Фукнции для парсинга

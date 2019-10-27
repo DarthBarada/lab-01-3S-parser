@@ -6,7 +6,7 @@
 #include <iterator>
 Json* JsonParser::parser(const std::string& input) // Tested
   {
-      if (is_file(input))
+      if (!is_json(input))
         {
 		        return parseFile(input);
         }

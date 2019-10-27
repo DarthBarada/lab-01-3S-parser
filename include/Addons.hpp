@@ -93,6 +93,15 @@ void clear_quotes(std::string & string)
 			}
 	}
 
+bool is_json(const std::string& string)
+{
+  if (string.front() == '{' && string.back() == '}' || string.front() == '[' && string.back() == ']')
+    {
+      return true;
+    }
+    return false;
+}
+
 int is_json_object(const std::string& string) // 0 - не объект, 1 - объект, 2 - массив
 	{
 		if (string.front() == '{' && string.back() == '}')

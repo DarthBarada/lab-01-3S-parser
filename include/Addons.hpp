@@ -95,7 +95,7 @@ void clear_quotes(std::string & string)
 
 bool is_json(const std::string& string)
 {
-  if (string.front() == '{' && string.back() == '}' || string.front() == '[' && string.back() == ']')
+  if ((string.front() == '{' && string.back() == '}') || (string.front() == '[' && string.back() == ']'))
     {
       return true;
     }

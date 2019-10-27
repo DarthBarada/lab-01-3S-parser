@@ -21,7 +21,7 @@ Json* JsonParser::parse(std::string input) // Tested
 		std::vector <std::string> big_string_vector;
 
 		///
-		///---------------- В этом блоке мы парсим json строку в вектор ----------------
+		///---------------- пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ json пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ ----------------
 		///
 
 		second_step_of_cleaning(input);
@@ -35,7 +35,7 @@ Json* JsonParser::parse(std::string input) // Tested
 			}
 
 		///
-		///------------------------------- Конец блока -------------------------------
+		///------------------------------- пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ -------------------------------
 		///
 
 		return vector_to_object(big_string_vector);
@@ -47,7 +47,7 @@ Json*  JsonParser::parseFile(std::string path) // Tested
 	std::vector <std::string> big_string_vector;
 
 	///
-	///---------------- В этом блоке мы парсим json строку в вектор ----------------
+	///---------------- пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ json пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ ----------------
 	///
 	if (is_json_object(line) == 1)
 		{
@@ -58,7 +58,7 @@ Json*  JsonParser::parseFile(std::string path) // Tested
 			big_string_vector = array_parser(line);
 		}
 	///
-	///------------------------------- Конец блока -------------------------------
+	///------------------------------- пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ -------------------------------
 	///
 
 	return vector_to_object(big_string_vector);
@@ -87,7 +87,7 @@ std::pair <size_t, size_t> find_segment_borders(std::string input, size_t index)
 	{
 		char my_char = input.at(index);
 		char reverse_char;
-		
+
 		if (my_char == '{')
 			{
 				reverse_char = '}';
@@ -100,17 +100,17 @@ std::pair <size_t, size_t> find_segment_borders(std::string input, size_t index)
 		size_t temp = index;
 		size_t last = input.find_first_of(reverse_char, index);
 
-		// Смысл этого цикла: мы находим новую дальнюю границу ('}' или ']'), пока находим внутри новую нижнюю границу ('{' или '[')
-		// C ++ здесь произвольно увеличивается temp, поэтому здесь используется + 1
+		// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ: пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ ('}' пїЅпїЅпїЅ ']'), пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ ('{' пїЅпїЅпїЅ '[')
+		// C ++ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ temp, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ + 1
 		while ((input.find_first_of(my_char, temp) < input.find_first_of(my_char, temp + 1)) && (input.find_first_of(my_char,temp + 1) < input.find_first_of(reverse_char, last)))
 			{
-				temp = input.find_first_of(my_char, temp + 1);			// <- Это мы находим сколько вложенных
-				last = input.find_first_of(reverse_char, last + 1);		// <- Это мы находим следущую закрывающую скобку
+				temp = input.find_first_of(my_char, temp + 1);			// <- пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+				last = input.find_first_of(reverse_char, last + 1);		// <- пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 			}
 		return std::make_pair(index,++last);
 	}
 
-///			Вспомогательные функции для парсинга объектов
+///			пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 void objfound_quote(std::string& input, std::vector <std::string>& plurality, std::pair <std::string, std::string>& key_value, size_t index) // Tested
 	{
 		if (key_value.second.empty() && !key_value.first.empty())
@@ -131,10 +131,10 @@ void objfound_quote(std::string& input, std::vector <std::string>& plurality, st
 			}
 		else if (key_value.first.empty())
 			{
-				key_value.first = input.substr(index, std::find_first_of(input.begin() + index, input.end(), edge_chars.begin(), edge_chars.end()) - input.begin()); // Копирует ключ и ковычки
-				second_step_of_cleaning(key_value.first);																												 // Чистим начало и конец ключа
-				clear_quotes(key_value.first);																															 // Чистим ключ от ковычек
-				input.erase(index, std::find_first_of(input.begin() + index, input.end(), edge_chars.begin(), edge_chars.end()) - input.begin());					 // Удаляет всё место, занимемое ключом 
+				key_value.first = input.substr(index, std::find_first_of(input.begin() + index, input.end(), edge_chars.begin(), edge_chars.end()) - input.begin()); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+				second_step_of_cleaning(key_value.first);																												 // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+				clear_quotes(key_value.first);																															 // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+				input.erase(index, std::find_first_of(input.begin() + index, input.end(), edge_chars.begin(), edge_chars.end()) - input.begin());					 // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 			}
 	}
 
@@ -168,7 +168,6 @@ void objfound_begin_of_anobj(std::string& input, std::vector <std::string>& plur
 		std::vector<std::string> nested;
 		std::pair <size_t, size_t> borders = find_segment_borders(input, index);;
 		std::string sub_string = input.substr(borders.first, borders.second - borders.first);
-
 		input.erase(borders.first, borders.second - borders.first);
 		second_step_of_cleaning(input);
 
@@ -180,7 +179,7 @@ void objfound_begin_of_anobj(std::string& input, std::vector <std::string>& plur
 			{
 				nested = JsonParser::array_parser(sub_string);
 			}
-		
+
 		plurality.insert(plurality.end(), key_value.first);
 		plurality.insert(plurality.end(), ":");
 
@@ -205,12 +204,12 @@ std::vector <std::string> JsonParser::object_parser(std::string& input) // Teste
 		input.erase(input.begin()); input.pop_back();
 
 		for (size_t index = 0; index < input.size(); ++index)
-			{	
+			{
 				second_step_of_cleaning(input);
 				/*if (input.at(index) == ':')
 					{
 						objfound_colon(input,string_objects, keyval, index);
-						index = start_point;	
+						index = start_point;
 						continue;
 					}*/
 				if (input.at(index) == '\"' || input.at(index) == '\'')
@@ -230,7 +229,7 @@ std::vector <std::string> JsonParser::object_parser(std::string& input) // Teste
 						objfound_begin_of_anobj(input, string_objects, keyval, index);
 						index = start_point;
 						continue;
-					}	
+					}
 				if (input.at(index) == '[')
 					{
 
@@ -263,7 +262,7 @@ std::vector <std::string> JsonParser::object_parser(std::string& input) // Teste
 		return string_objects;
 	}
 
-///			Вспомогательные функции для парсинга массивов
+///			пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 void arrfound_quote(std::string& input, std::vector <std::string>& plurality, size_t index) // Tested
 	{
 		std::string value;
@@ -309,7 +308,7 @@ void arrfound_begin_of_anobj(std::string& input, std::vector <std::string>& plur
 			{
 				nested = JsonParser::array_parser(sub_string);
 			}
-		
+
 		for (auto position = nested.begin(); position != nested.end(); ++position)
 			{
 				plurality.insert(plurality.end(), *position);
@@ -350,7 +349,7 @@ std::vector <std::string> JsonParser::array_parser(std::string& input) // Tested
 						arrfound_begin_of_anobj(input, string_array, index);
 						index = start_point;
 						continue;
-					}	
+					}
 				if (input.at(index) == '[')
 					{
 						arrfound_begin_of_anobj(input, string_array, index);
@@ -370,7 +369,7 @@ std::vector <std::string> JsonParser::array_parser(std::string& input) // Tested
 		return string_array;
 	}
 
-///			Вспомогательные функции для сборки объектов
+///			пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 std::any return_data(const std::string input) // Tested
 	{
@@ -393,11 +392,11 @@ std::any return_data(const std::string input) // Tested
 		return input;
 	}
 
-std::pair <std::vector<std::string>::iterator, std::vector<std::string>::iterator> find_for_gatherer_borders(std::vector <std::string>& input, size_t index) // Tested 
+std::pair <std::vector<std::string>::iterator, std::vector<std::string>::iterator> find_for_gatherer_borders(std::vector <std::string>& input, size_t index) // Tested
 	{
 		std::string my_char = input.at(index);
 		std::string  reverse_char;
-		
+
 		if (my_char == "{" - '\0')
 			{
 				reverse_char = "}"-'\0';
@@ -414,12 +413,12 @@ std::pair <std::vector<std::string>::iterator, std::vector<std::string>::iterato
 		auto temp = input.begin() + index;
 		auto last = std::find(std::begin(input)+index, std::end(input), reverse_char);
 
-		// Смысл этого цикла: мы находим новую дальнюю границу ('}' или ']'), пока находим внутри новую нижнюю границу ('{' или '[')
+		// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ: пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ ('}' пїЅпїЅпїЅ ']'), пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ ('{' пїЅпїЅпїЅ '[')
 		while (std::find(temp, std::end(input), my_char) < std::find(temp + 1, std::end(input), my_char) && std::find(temp + 1, std::end(input), my_char) < std::find(last, std::end(input), reverse_char))
 			{
-				temp = std::find(temp + 1, std::end(input), my_char);			// <- Это мы находим сколько вложенных
-				last = std::find(last + 1, std::end(input), reverse_char);		// <- Это мы находим следущую закрывающую скобку
-			}	
+				temp = std::find(temp + 1, std::end(input), my_char);			// <- пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+				last = std::find(last + 1, std::end(input), reverse_char);		// <- пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+			}
 		return std::make_pair(input.begin() + index,++last);
 	}
 
@@ -438,7 +437,7 @@ void JsonParser::object_gatherer(std::vector <std::string>& input, Json *json)
 					{
 						temp_object.first = input.at(index - 1);
 						if (input.at(index + 1) == "{" || input.at(index + 1) == "[")
-							{							
+							{
 								borders = find_for_gatherer_borders(input, index + 1);
 								std::vector <std::string> temp(borders.first,borders.second);
 

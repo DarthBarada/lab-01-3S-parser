@@ -1,5 +1,4 @@
 #pragma once
-
 #include "Json.hpp"
 
 #include <set>

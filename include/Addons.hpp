@@ -7,7 +7,15 @@
 #include <fstream>
 #include <algorithm>
 #include <string>
+#include <iterator>
 
+void log_exit(const std::string& input)
+  {
+    std::ofstream fout;
+    fout.open("log.txt",std::ios::app);
+    fout<<input;
+    fout.close();
+  }
 
 //            Поиск пути
 namespace fs = std::filesystem;
@@ -28,7 +36,7 @@ void reset(std::pair<std::string,std::string>& pair) // Tested
 bool is_file(const std::string& filename) // Tested
 	{
     /*std::cout<<"\n"<<fs::current_path()<<" "<<l_path<<"\n";*/
-	try 
+	try
 		{
 			if (!fs::exists(filename))  // Если в текущей папке нет файла, то переходим в папку ниже
 				{                         // Сделано для _build
@@ -44,18 +52,22 @@ bool is_file(const std::string& filename) // Tested
 
 std::string second_step_of_cleaning(std::string& temp_string); // Tested
 
-std::string first_step_of_cleaning(std::string& temp_string)   // Tested
+std::string& first_step_of_cleaning(std::string& temp_string)   // Tested
   {
+    std::string temp;
     if (temp_string.empty())
-      return temp_string;
-
+      {
+        return temp_string;
+      }
     auto temp_iterator = std::find_first_of(temp_string.begin(),temp_string.end(),unused_chars2.begin(),unused_chars2.end());
      while (temp_iterator != temp_string.end())
        {
-         temp_string.erase(temp_iterator);
+         temp+=temp_string.substr(0,std::prev(temp_iterator) - temp_string.begin());
+         temp_string.erase(temp_string.begin(),std::next(temp_iterator));
          temp_iterator =std::find_first_of(temp_string.begin(),temp_string.end(),unused_chars2.begin(),unused_chars2.end());
        }
-    second_step_of_cleaning(temp_string);
+    second_step_of_cleaning(temp);
+    temp_string = temp;
     return temp_string;
   }
 
@@ -93,7 +105,7 @@ void clear_quotes(std::string & string)
 			}
 	}
 
-int is_json_object(const std::string& string) // 0 - не объект, 1 - объект, 2 - массив 
+int is_json_object(const std::string& string) // 0 - не объект, 1 - объект, 2 - массив
 	{
 		if (string.front() == '{' && string.back() == '}')
 			{
@@ -112,23 +124,16 @@ int is_json_object(const std::string& string) // 0 - не объект, 1 - об
 
   std::string read_file(const std::string Path) // Tested
     {
-	  std::string line;
-	  std::string buffer;
-	  std::ifstream file(Path);
-	  setlocale(LC_ALL, "ru-RU");
-
-	  if (!file.is_open()) // если файл не открыт
-		  throw WrongJson("Path has errors!");
-	  else
-		  {
-			  while (!file.eof())
-				  {
-					  std::getline(file, buffer);
-					  line += buffer;
-				  }
-			  buffer.clear();
-		  }
-	  file.close();
-	  first_step_of_cleaning(line);
-	  return line;
+      std::ifstream file(Path);
+  	  if (!file.is_open()) // если файл не открыт
+        {
+          throw WrongJson("Path has errors!");
+        }
+      std::string line(
+        std::istreambuf_iterator<char>{file},
+        std::istreambuf_iterator<char>()
+    );
+      first_step_of_cleaning(line);
+      log_exit(line);
+  	  return line;
     }

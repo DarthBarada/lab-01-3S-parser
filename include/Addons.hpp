@@ -30,7 +30,7 @@ void reset(std::pair<std::string,std::string>& pair) // Tested
 bool is_file(const std::string& filename) // Tested
 	{
     std::ifstream file(filename);
-    if (!file.open())
+    if (!file.is_open())
       {
         return false;
       }

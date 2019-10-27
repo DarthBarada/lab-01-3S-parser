@@ -1,4 +1,0 @@
-/home/darthbarada/Programming/BMSTU/lab-01-3S-parser/sources/_build/CMakeFiles/rebuild_cache.dir
-/home/darthbarada/Programming/BMSTU/lab-01-3S-parser/sources/_build/CMakeFiles/edit_cache.dir
-/home/darthbarada/Programming/BMSTU/lab-01-3S-parser/sources/_build/CMakeFiles/Json.dir
-/home/darthbarada/Programming/BMSTU/lab-01-3S-parser/sources/_build/CMakeFiles/JsonMain.dir

@@ -8,11 +8,11 @@ Json* JsonParser::parser(const std::string& input) // Tested
   {
       if (is_file(input))
         {
-		  return parseFile(input);
+		        return parseFile(input);
         }
       else
         {
-		  return parse(input);
+		        return parse(input);
         }
   }
 

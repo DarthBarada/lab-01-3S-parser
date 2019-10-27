@@ -1,1 +1,0 @@
-/usr/bin/c++     CMakeFiles/JsonMain.dir/main.cpp.o  -o JsonMain libJson.a 

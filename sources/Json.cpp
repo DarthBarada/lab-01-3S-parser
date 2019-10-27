@@ -2,6 +2,9 @@
 #include "Json.hpp"
 #include "JsonParser.hpp"
 
+#include <memory>
+#include <fstream>
+
 bool Json::is_empty() const
 	{
 		return Objects.empty() && Arrays.empty();
@@ -18,7 +21,8 @@ bool Json::is_object() const
 
 Json::Json(const std::string& string)
 	{
-		copy_json(*JsonParser::parser(string));
+		std::unique_ptr<Json> result{JsonParser::parse(string)};
+		*this = std::move (*result);
 	}
 
 Json::Json(Json& s)
@@ -27,6 +31,23 @@ Json::Json(Json& s)
 		Objects = s.give_objects();
 		contains_array = s.contains_array;
 		contains_object = s.contains_object;
+	}
+
+Json Json::parseFile(const std::string &Path)
+	{
+		std::ifstream file(Path);
+		if (file.fail())
+			{
+				throw WrongJson("Cannot read file: " + Path);
+			}
+
+		std::string fullFile(
+			std::istreambuf_iterator<char>{file},
+			std::istreambuf_iterator<char>()
+		 );
+		file.close();
+
+		return Json(fullFile);
 	}
 
 std::any& Json::operator[](const std::string& key)

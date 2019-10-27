@@ -2,24 +2,13 @@
 #include "Exceptions.hpp"
 #include "Addons.hpp"
 
-#include <fstream>
 #include <iterator>
-Json* JsonParser::parser(const std::string& input) // Tested
-  {
-      if (!is_json(input))
-        {
-		        return parseFile(input);
-        }
-      else
-        {
-		        return parse(input);
-        }
-  }
 
 Json* JsonParser::parse(std::string input) // Tested
   {
 		std::vector <std::string> big_string_vector;
 
+    first_step_of_cleaning(input);
 		///
 		///---------------- � ���� ����� �� ������ json ������ � ������ ----------------
 		///
@@ -32,6 +21,7 @@ Json* JsonParser::parse(std::string input) // Tested
 			{
 				big_string_vector = array_parser(input);
 			}
+      
     second_step_of_cleaning(input);
 
 		///
@@ -41,28 +31,6 @@ Json* JsonParser::parse(std::string input) // Tested
 		return vector_to_object(big_string_vector);
   }
 
-Json*  JsonParser::parseFile(std::string path) // Tested
-  {
-	std::string line = read_file(path);
-	std::vector <std::string> big_string_vector;
-
-	///
-	///---------------- � ���� ����� �� ������ json ������ � ������ ----------------
-	///
-	if (is_json_object(line) == 1)
-		{
-			big_string_vector = object_parser(line);
-		}
-	else
-		{
-			big_string_vector = array_parser(line);
-		}
-	///
-	///------------------------------- ����� ����� -------------------------------
-	///
-
-	return vector_to_object(big_string_vector);
-  }
 
 Json* JsonParser::vector_to_object(std::vector <std::string>& input) // Tested
 	{

@@ -15,7 +15,7 @@ TEST(Json, NullJson)
 
 TEST(Json, ExampleJson)
 	{
-		Json object("{\"lastname\" : \"Ivanov\",\"firstname\" : \"Ivan\",\"age\" : 25,\"islegal\" : false,\"marks\" : [4,5,5,5,2,3],\"address\" : {\"city\" : \"Moscow\",\"street\" : \"Vozdvijenka\"}}");
+		Json object = Json::parse("{\"lastname\" : \"Ivanov\",\"firstname\" : \"Ivan\",\"age\" : 25,\"islegal\" : false,\"marks\" : [4,5,5,5,2,3],\"address\" : {\"city\" : \"Moscow\",\"street\" : \"Vozdvijenka\"}}");
 
 		EXPECT_EQ(std::any_cast<std::string>(object["lastname"]), "Ivanov");
 		EXPECT_EQ(std::any_cast<bool>(object["islegal"]), false);
@@ -32,7 +32,7 @@ TEST(Json, ExampleJson)
 
 TEST(Json, ParseFile)
 	{
-		Json json("../tests/TestJson.json");
+		Json json = Json::parseFile("../tests/TestJson.json");
 
 		EXPECT_EQ(json.is_object(), true);
 		EXPECT_EQ(json.is_array(), false);

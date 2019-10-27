@@ -12,11 +12,8 @@ const std::set <char> edge_chars {',',']','}',':'};
 class JsonParser
   {
     public:
-	  static Json* parser(const std::string&);
+	  static Json* parse(std::string);      // Функция парсинга строки
 //      Фукнции для парсинга
-      static Json* parse(std::string);      // Функция парсинга строки
-      static Json* parseFile(std::string);  // Функция парсинга файла
-
 	  static std::vector <std::string> array_parser(std::string&);
 	  static std::vector <std::string> object_parser(std::string&);
 	  static Json* vector_to_object(std::vector <std::string>&);

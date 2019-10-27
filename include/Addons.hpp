@@ -42,7 +42,7 @@ std::string second_step_of_cleaning(std::string& temp_string); // Tested
 
 std::string& first_step_of_cleaning(std::string& temp_string)   // Tested
   {
-    std::string temp;
+    //std::string temp;
     if (temp_string.empty())
       {
         return temp_string;
@@ -50,12 +50,11 @@ std::string& first_step_of_cleaning(std::string& temp_string)   // Tested
     auto temp_iterator = std::find_first_of(temp_string.begin(),temp_string.end(),unused_chars2.begin(),unused_chars2.end());
      while (temp_iterator != temp_string.end())
        {
-         temp+=temp_string.substr(0,std::prev(temp_iterator) - temp_string.begin());
-         temp_string.erase(temp_string.begin(),std::next(temp_iterator));
+         temp_string.erase(std::prev(temp_iterator),std::next(temp_iterator));
          temp_iterator =std::find_first_of(temp_string.begin(),temp_string.end(),unused_chars2.begin(),unused_chars2.end());
        }
-    second_step_of_cleaning(temp);
-    temp_string = temp;
+    //log_exit(temp_string);
+    //second_step_of_cleaning(temp_string);
     return temp_string;
   }
 
@@ -114,23 +113,7 @@ int is_json_object(const std::string& string) // 0 - не объект, 1 - об
 			}
 		else
 			{
-				throw WrongJson("");
+				throw WrongJson("You have errors in your .json file");
 			}
 		return 0;
 	}
-
-  std::string read_file(const std::string Path) // Tested
-    {
-      std::ifstream file(Path);
-  	  if (!file.is_open()) // если файл не открыт
-        {
-          throw WrongJson("Path has errors!");
-        }
-      std::string line(
-        std::istreambuf_iterator<char>{file},
-        std::istreambuf_iterator<char>()
-       );
-      first_step_of_cleaning(line);
-      //log_exit(line);
-  	  return line;
-    }
